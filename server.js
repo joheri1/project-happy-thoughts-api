@@ -2,7 +2,7 @@ import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
 import happyThoughtSchema from "./models/mongooseModel";
-import happyThought from "./routes/happyThought";
+import routes from "./routes/happyThought";
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-mongo";
 mongoose.connect(mongoUrl);
@@ -21,7 +21,9 @@ const happyThought = mongoose.model("HappyThought", happyThoughtSchema);
 
 /**
  * Endpoint to GET thoughts.
- * /
+ */
+app.use("/", routes);
+
 
 /**
  * Endpoint for testing the server.
