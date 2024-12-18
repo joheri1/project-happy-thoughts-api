@@ -7,10 +7,15 @@ const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-mongo";
 mongoose.connect(mongoUrl);
 mongoose.Promise = Promise;
 
+ /**
+ * The Mongoose model for HappyThoughts.
+ * Defined properties to match the keys in the JSON objects sent to the API. 
+ */
+
 const HappyThought = mongoose.model('HappyThought', happyThoughtSchema);
 module.exports = HappyThought;
 
-// Defines the port the app will run on. Defaults to 8080, but can be overridden when starting the server. Example command to overwrite PORT env variable value: PORT=9000 npm start
+// Defines the port the app will run on. 
 const port = process.env.PORT || 8080;
 const app = express();
 
