@@ -1,10 +1,14 @@
 import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
+import Thought from "./models/Thought";
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-mongo";
 mongoose.connect(mongoUrl);
 mongoose.Promise = Promise;
+
+const HappyThought = mongoose.model('HappyThought', happyThoughtsSchema);
+module.exports = HappyThought;
 
 // Defines the port the app will run on. Defaults to 8080, but can be overridden when starting the server. Example command to overwrite PORT env variable value: PORT=9000 npm start
 const port = process.env.PORT || 8080;
