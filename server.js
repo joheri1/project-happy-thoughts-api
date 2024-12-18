@@ -42,6 +42,11 @@ app.post("/thoughts", async (request, response) => {
   }
 });
 
+app.post("/thoughts/:thoughtId/like", async (request, response) => {
+
+  const { thoughtId } = request.params;
+})
+
 /**
  * Endpoint for testing the server.
  * This endpoint confirms that the server is running and responds with "The server is up, so come share your happy thoughts with us! 🌟"
