@@ -38,8 +38,23 @@ router.post("/", async (request, response) => {
  */
 
 router.post("/thoughts/:thoughtId/like", async (request, response) => {
-
   const { thoughtId } = request.params;
+
+  try {
+    const updatedThought = await HappyThought.findByIdAndUpdate(thoughtId,
+      { $inc: { hearts: 1 } }, // Add 1 heart/like to the thought
+      { new: true } // Return the updated thought
+    );
+    
+    if (!updatedThought) {
+      return response.status(404).json({ message: "Thought not found" });
+    }
+
+    response.status(200).json(updatedThought);
+    
+  } catch (error) {
+    response.status(400).json({ message: "Could not like thought", error: error.message });
+  }
 });
 
 export default router;
