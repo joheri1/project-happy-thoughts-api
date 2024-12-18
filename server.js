@@ -14,9 +14,32 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Start defining your routes here
-app.get("/", (req, res) => {
-  res.send("Hello Happy JoE!");
+/**
+ * Endpoint to GET thoughts.
+ * Retrieves the 20 most recent thoughts, sorted by creation date in descending order. The endpoint responds with the thoughts in JSON format.
+ */
+app.get("/thoughts", (request, response) =>{
+  Thought.find()
+    .sort({ createdAt: "desc" })
+    .limit(20)
+    .then((thoughts) => {
+      response.json(thoughts);
+  });
+});
+/**
+ * Endpoint to POST a thought.
+ * The endpoint expects a JSON body with the thought message. The thought is saved to the database and the endpoint responds with the saved thought in JSON format.
+ */
+app.post("/thoughts", async (request, response) => {
+  const { message } = request.body;
+  const thought = new Thought({ message });
+
+  try {
+    const savedThought = await thought.save();
+    response.status(201).json(savedThought);
+  } catch (error) {
+    response.status(400).json({ message: "Could not save thought to the Database", error: error.message });
+  }
 });
 
 /**
