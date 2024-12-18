@@ -42,6 +42,11 @@ app.post("/thoughts", async (request, response) => {
   }
 });
 
+/**
+ * Endpoint to POST a like to a thought.
+ * The endpoint expects a JSON body with the thoughtId. The thought is updated with a like and the endpoint responds with the updated thought in JSON format.
+ */
+
 app.post("/thoughts/:thoughtId/like", async (request, response) => {
 
   const { thoughtId } = request.params;
