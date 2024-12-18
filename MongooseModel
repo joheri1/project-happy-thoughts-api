@@ -13,6 +13,7 @@ const happyThoughtsSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: () => new Date()
+    default: () => new Date(),
+    immutable: true
   }
 });
