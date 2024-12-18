@@ -1,11 +1,11 @@
 const mongoose = require('mongoose'); 
 
-const happyThoughtsSchema = new mongoose.Schema({
+const happyThoughtSchema = new mongoose.Schema({
   message: {
     type: String,
-    required: true,
-    minlength: 5,
-    maxlength: 140
+    required: [true,'A message is required'],
+    minlength: [5, 'Message must be at least 5 characters'],
+    maxlength: [140, 'Message must be at most 140 characters'] 
   },
   hearts: {
     type: Number,
