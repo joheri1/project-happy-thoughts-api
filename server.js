@@ -1,7 +1,7 @@
 import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
-import happyThoughtSchema from "./models/MongooseModel";
+import happyThoughtSchema from "./models/mongooseModel";
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-mongo";
 mongoose.connect(mongoUrl);
