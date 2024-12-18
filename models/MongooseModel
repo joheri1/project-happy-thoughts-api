@@ -21,4 +21,6 @@ const happyThoughtSchema = new mongoose.Schema({
   }
 });
 
-export default happyThoughtSchema;
+const HappyThought = mongoose.model('HappyThought', happyThoughtSchema);
+
+export default HappyThought;
