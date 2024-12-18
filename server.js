@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 //Use routes fot HappyThoughts
-app.use("/thoughts", routes);
+app.use("/", routes);
 
 /**
  * Endpoint for testing the server.

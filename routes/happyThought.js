@@ -3,28 +3,12 @@
 import HappyThought from "../models/MongooseModel";
 import express from "express";
 
-const router = express.Router();
-
-/** 
- * Documentation endpoint
- */
-app.get("/", (request, response) => {
-  const endpoints = expressListEndpoints(app);
-  response.json({
-    message: "Welcome to the Elves API! Here are the available endpoints:",
-    description: {
-      "/elves": "Get all elves or filter using query params, e.g., ?title=backend dasher&top_twelves=true",
-      "/elves/:id": "Get a specific elf by ID",
-      "/test": "Test endpoint",
-    },
-    endpoints: endpoints
-  });
-});
+const app = express.Router();
 
 /** 
  * Endpoint to GET 20 thoughts. 
 */
-router.get("/thoughts", async (request, response) => {
+app.get("/thoughts", async (request, response) => {
   try {
     const thoughts = await HappyThought.find()
       .sort({ createdAt: "desc" })
@@ -38,7 +22,7 @@ router.get("/thoughts", async (request, response) => {
 /**
  * Endpoint to POST a thought.
  */
-router.post("/", async (request, response) => {
+app.post("/thoughts", async (request, response) => {
   const { message } = request.body;
 
   try {
@@ -53,7 +37,7 @@ router.post("/", async (request, response) => {
  * Endpoint to POST a like.
  */
 
-router.post("/thoughts/:thoughtId/like", async (request, response) => {
+app.post("/thoughts/:thoughtId/like", async (request, response) => {
   const { thoughtId } = request.params;
 
   try {
@@ -73,4 +57,4 @@ router.post("/thoughts/:thoughtId/like", async (request, response) => {
   }
 });
 
-export default router;
+export default app;
