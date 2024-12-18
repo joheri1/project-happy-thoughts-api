@@ -1,4 +1,7 @@
-const mongoose = require('mongoose'); 
+// Purpose: Define the Mongoose model for the HappyThoughts collection in the MongoDB database
+// Dependencies: mongoose
+
+import mongoose from 'mongoose';
 
 const happyThoughtSchema = new mongoose.Schema({
   message: {
@@ -17,3 +20,6 @@ const happyThoughtSchema = new mongoose.Schema({
     immutable: true
   }
 });
+
+const HappyThought = mongoose.model('HappyThought', happyThoughtSchema);
+module.exports = HappyThought;

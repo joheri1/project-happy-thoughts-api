@@ -1,19 +1,11 @@
 import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
-import Thought from "./models/Thought";
+import happyThoughtSchema from "./models/MongooseModel.js";
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-mongo";
 mongoose.connect(mongoUrl);
 mongoose.Promise = Promise;
-
- /**
- * The Mongoose model for HappyThoughts.
- * Defined properties to match the keys in the JSON objects sent to the API. 
- */
-
-const HappyThought = mongoose.model('HappyThought', happyThoughtSchema);
-module.exports = HappyThought;
 
 // Defines the port the app will run on. 
 const port = process.env.PORT || 8080;
@@ -22,6 +14,9 @@ const app = express();
 // Add middlewares to enable cors and json body parsing
 app.use(cors());
 app.use(express.json());
+
+// Use happyThoughtSchema to define a Mongoose model
+const HappyThought = mongoose.model("HappyThought", happyThoughtSchema);
 
 /**
  * Endpoint to GET thoughts.
