@@ -1,7 +1,7 @@
 import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
-import happyThoughtSchema from "./models/MongooseModel.js";
+import happyThoughtSchema from "./models/MongooseModel";
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-mongo";
 mongoose.connect(mongoUrl);
@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // Use happyThoughtSchema to define a Mongoose model
-const HappyThought = mongoose.model("HappyThought", happyThoughtSchema);
+const happyThought = mongoose.model("HappyThought", happyThoughtSchema);
 
 /**
  * Endpoint to GET thoughts.
