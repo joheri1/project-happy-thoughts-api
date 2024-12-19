@@ -8,9 +8,12 @@ dotenv.config();
 
 // Connects to the Mongo database
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-happy-thoughts-api";
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+
+mongoose.connect(mongoUrl)
   .then(() => console.log("Connected to the database 🚀"))
   .catch((error) => console.error("Could not connect to the database", error));
+
+
 mongoose.Promise = Promise;
 
 // Defines the port the app will run on. 
