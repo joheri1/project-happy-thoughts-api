@@ -3,9 +3,14 @@ import express from "express";
 import mongoose from "mongoose";
 import routes from "./routes/happyThought";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 // Connects to the Mongo database
-const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-mongo";
-mongoose.connect(mongoUrl);
+const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-happy-thoughts-api";
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("Connected to the database 🚀"))
+  .catch((error) => console.error("Could not connect to the database", error));
 mongoose.Promise = Promise;
 
 // Defines the port the app will run on. 
