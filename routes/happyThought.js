@@ -2,8 +2,20 @@
 
 import HappyThought from "../models/MongooseModel";
 import express from "express";
+import expressListEndpoints from "express-list-endpoints";
 
 const app = express.Router();
+
+/** 
+ * Documentation for the API.
+ */
+app.get("/", (request, response) => {
+  const endpoints = expressListEndpoints(app); // Get all endpoints
+  response.json({
+    message: "Welcome to the Happy Thoughts API 🌟",
+    endpoints: endpoints,
+  });
+});
 
 /** 
  * Endpoint to GET 20 thoughts. 
