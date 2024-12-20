@@ -9,10 +9,11 @@ dotenv.config();
 // Connects to the Mongo database
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-happy-thoughts-api";
 
+console.log("MongoDB URL:", mongoUrl);
+
 mongoose.connect(mongoUrl)
   .then(() => console.log("Connected to the database 🚀"))
   .catch((error) => console.error("Could not connect to the database", error));
-
 
 mongoose.Promise = Promise;
 

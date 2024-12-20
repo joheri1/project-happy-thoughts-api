@@ -39,7 +39,7 @@ app.post("/thoughts", async (request, response) => {
 
   try {
     const newThought = await HappyThought.create({ message });
-    response.status(201).json(savedThought);
+    response.status(201).json(newThought);
   } catch (error) {
     response.status(400).json({ message: "Could not save thought to the Database", error: error.message });
   }
